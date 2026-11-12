@@ -1,0 +1,45 @@
+#!/usr/bin/with-contenv bash
+
+NPM_HOST="nginx"
+CHAIN="NPM_FORWARD"
+PORTS=(80 81 443)
+
+until ip link show wg0 >/dev/null 2>&1; do
+    sleep 2
+done
+
+iptables -t nat -N "$CHAIN" 2>/dev/null || true
+
+iptables -t nat -C PREROUTING \
+    -i wg0 -p tcp \
+    -m multiport --dports "$(IFS=,; echo "${PORTS[*]}")" \
+    -j "$CHAIN" 2>/dev/null || \
+iptables -t nat -A PREROUTING \
+    -i wg0 -p tcp \
+    -m multiport --dports "$(IFS=,; echo "${PORTS[*]}")" \
+    -j "$CHAIN"
+
+LAST_IP=""
+while true; do
+    NPM_IP=$(getent ahostsv4 "$NPM_HOST" | awk 'NR==1 {print $1}')
+    if [ -n "$NPM_IP" ]; then
+        if [ "$NPM_IP" != "$LAST_IP" ]; then
+            echo "NPM IP changed to $NPM_IP"
+            iptables -t nat -F "$CHAIN"
+			for PORT in "${PORTS[@]}"; do
+				iptables -t nat -A "$CHAIN" \
+					-p tcp --dport "$PORT" \
+					-j DNAT --to-destination "$NPM_IP:$PORT"
+            done
+            LAST_IP="$NPM_IP"
+            echo "NPM forwarding rules updated."
+        fi
+    else
+        if [ -n "$LAST_IP" ]; then
+            echo "NPM is unavailable. Removing forwarding rules."
+            iptables -t nat -F "$CHAIN"
+            LAST_IP=""
+        fi
+    fi
+    sleep 30
+done

@@ -1,0 +1,4 @@
+include:
+  - ./wireguard/compose.yaml
+  - ./nginx/compose.yaml
+  - ./suwayomi/compose.yaml
