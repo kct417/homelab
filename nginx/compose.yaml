@@ -28,10 +28,3 @@ services:
     volumes:
       - ./data:/data
       - ./data/letsencrypt:/etc/letsencrypt
-
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:81"]
-      interval: 300s
-      timeout: 10s
-      start_period: 60s
-      retries: 3

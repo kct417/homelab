@@ -35,10 +35,3 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
       - net.ipv4.ip_forward=1
-
-    healthcheck:
-      test: ["CMD", "ip", "link", "show", "wg0"]
-      interval: 300s
-      timeout: 5s
-      start_period: 15s
-      retries: 3

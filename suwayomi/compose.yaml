@@ -36,13 +36,6 @@ services:
     volumes:
       - ./data:/home/suwayomi/.local/share/Tachidesk
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4567"]
-      interval: 300s
-      timeout: 10s
-      start_period: 60s
-      retries: 3
-
   flaresolverr:
     image: ghcr.io/thephaseless/byparr
     container_name: flaresolverr
