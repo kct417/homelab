@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bash
+
+CUSTOM_DIR="/custom-cont-init.d"
+DEFAULT_DIR="/config/coredns"
+
+if [ -f "$CUSTOM_DIR/Corefile" ]; then
+    echo "[INFO] Found $CUSTOM_DIR/Corefile, updating CoreDNS folder to $CUSTOM_DIR"
+    for f in /etc/s6-overlay/s6-rc.d/svc-coredns/run /run/s6/db/servicedirs/svc-coredns/run /run/s6-rc*/servicedirs/svc-coredns/run; do
+        if [ -f "$f" ] && grep -q "$DEFAULT_DIR" "$f"; then
+            sed -i "s|$DEFAULT_DIR|$CUSTOM_DIR|g" "$f"
+            echo "[INFO] Updated $f"
+        fi
+    done
+    s6-svc -r /run/service/svc-coredns 2>/dev/null || true
+else
+    echo "[INFO] No custom CoreDNS config found, using default folder $DEFAULT_DIR"
+fi

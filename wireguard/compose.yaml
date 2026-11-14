@@ -25,6 +25,7 @@ services:
     volumes:
       - ./config:/config
       - /lib/modules:/lib/modules #optional
+      - ./custom-cont-init:/custom-cont-init.d:ro
       - ./custom-services:/custom-services.d:ro
 
     cap_add:

@@ -24,7 +24,7 @@ while true; do
     NPM_IP=$(getent ahostsv4 "$NPM_HOST" | awk 'NR==1 {print $1}')
     if [ -n "$NPM_IP" ]; then
         if [ "$NPM_IP" != "$LAST_IP" ]; then
-            echo "NPM IP changed to $NPM_IP"
+            echo "[INFO] NPM IP changed to $NPM_IP"
             iptables -t nat -F "$CHAIN"
 			for PORT in "${PORTS[@]}"; do
 				iptables -t nat -A "$CHAIN" \
@@ -32,11 +32,11 @@ while true; do
 					-j DNAT --to-destination "$NPM_IP:$PORT"
             done
             LAST_IP="$NPM_IP"
-            echo "NPM forwarding rules updated."
+            echo "[INFO] NPM forwarding rules updated"
         fi
     else
         if [ -n "$LAST_IP" ]; then
-            echo "NPM is unavailable. Removing forwarding rules."
+            echo "[INFO] NPM forwarding rules removed"
             iptables -t nat -F "$CHAIN"
             LAST_IP=""
         fi
