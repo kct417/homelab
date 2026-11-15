@@ -2,7 +2,11 @@
 
 ## Supported Services
 
-- WireGuard
-- Nginx Proxy Manager
+- Jellyfin
 - Komodo
+- Nginx Proxy Manager
+- Prowlarr
+- Radarr
+- Sonarr
 - Suwayomi
+- WireGuard

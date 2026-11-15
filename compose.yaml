@@ -1,6 +1,9 @@
 include:
-  - ./jellyfin/compose.yaml
+#  - ./jellyfin/compose.yaml
 #  - ./komodo/compose.yaml
   - ./nginx/compose.yaml
+#  - ./prowlarr/compose.yaml
+#  - ./radarr/compose.yaml
+#  - ./sonarr/compose.yaml
 #  - ./suwayomi/compose.yaml
   - ./wireguard/compose.yaml
