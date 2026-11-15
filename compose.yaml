@@ -1,5 +1,7 @@
 include:
 #  - ./dockge/compose.yaml
+#  - ./dockhand/compose.yaml
+#  - ./dozzle/compose.yaml
 #  - ./jellyfin/compose.yaml
 #  - ./komodo/compose.yaml
   - ./nginx/compose.yaml
