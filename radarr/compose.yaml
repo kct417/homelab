@@ -9,8 +9,8 @@ services:
     volumes:
       - ./config:/config
       - ./data:/data
-#      - /path/to/movies:/movies #optional
-#      - /path/to/download-client-downloads:/downloads #optional
+      # - /path/to/movies:/movies #optional
+      # - /path/to/download-client-downloads:/downloads #optional
     ports:
       - 127.0.0.1:7878:7878
     restart: unless-stopped

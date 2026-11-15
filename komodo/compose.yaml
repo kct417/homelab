@@ -33,7 +33,7 @@ services:
       - mongo
     ports:
       - 127.0.0.1:9120:9120
-#    env_file: ./compose.env
+    # env_file: ./compose.env
     env_file: ./.env
     environment:
       KOMODO_DATABASE_ADDRESS: mongo:27017
@@ -59,7 +59,7 @@ services:
     restart: unless-stopped
     depends_on:
       - core
-#    env_file: ./compose.env
+    # env_file: ./compose.env
     env_file: ./.env
     volumes:
       ## Attach the Core / Periphery communication keys
@@ -73,7 +73,7 @@ services:
       ## Must be the same inside and outside the container,
       ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
       ## Default: /etc/komodo.
-#      - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
+      # - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
       - ${PWD}/komodo:${PWD}/komodo
       ## Optionally mount a custom periphery.config.toml
       # - /path/to/periphery.config.toml:/config/config.toml

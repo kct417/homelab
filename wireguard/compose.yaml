@@ -11,15 +11,15 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-#      - SERVERURL=wireguard.domain.com #optional
-#      - SERVERPORT=51820 #optional
+      # - SERVERURL=wireguard.domain.com #optional
+      # - SERVERPORT=51820 #optional
       - PEERS=2 #optional
-#      - PEERDNS=auto #optional
-#      - INTERNAL_SUBNET=10.13.13.0 #optional
+      # - PEERDNS=auto #optional
+      # - INTERNAL_SUBNET=10.13.13.0 #optional
       - INTERNAL_SUBNET=10.0.255.0 #optional
-#      - ALLOWEDIPS=0.0.0.0/0 #optional
+      # - ALLOWEDIPS=0.0.0.0/0 #optional
       - ALLOWEDIPS=10.0.255.1/32 #optional
-#      - PERSISTENTKEEPALIVE_PEERS= #optional
+      # - PERSISTENTKEEPALIVE_PEERS= #optional
       - LOG_CONFS=true #optional
 
     volumes:
@@ -30,7 +30,7 @@ services:
 
     cap_add:
       - NET_ADMIN
-#      - SYS_MODULE #optional
+      # - SYS_MODULE #optional
 
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
