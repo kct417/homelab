@@ -2,6 +2,7 @@
 
 ## Supported Services
 
+- Dockge
 - Jellyfin
 - Komodo
 - Nginx Proxy Manager

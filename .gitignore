@@ -4,3 +4,4 @@ config/
 data/
 keys/
 letsencrypt/
+stacks/
