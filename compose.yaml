@@ -1,5 +1,6 @@
 include:
-  - ./komodo/compose.yaml
-  - ./wireguard/compose.yaml
+  - ./jellyfin/compose.yaml
+#  - ./komodo/compose.yaml
   - ./nginx/compose.yaml
-  - ./suwayomi/compose.yaml
+#  - ./suwayomi/compose.yaml
+  - ./wireguard/compose.yaml
