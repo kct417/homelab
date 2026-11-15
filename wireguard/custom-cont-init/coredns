@@ -1,17 +1,24 @@
 #!/usr/bin/with-contenv bash
 
-CUSTOM_DIR="/custom-cont-init.d"
-DEFAULT_DIR="/config/coredns"
+CUSTOM_FILE="/custom-cont-init.d/Corefile"
+TARGET_FILE="/config/coredns/Corefile"
+BACKUP_FILE="/config/coredns/Corefile.bak"
 
-if [ -f "$CUSTOM_DIR/Corefile" ]; then
-    echo "[INFO] Found $CUSTOM_DIR/Corefile, updating CoreDNS folder to $CUSTOM_DIR"
-    for f in /etc/s6-overlay/s6-rc.d/svc-coredns/run /run/s6/db/servicedirs/svc-coredns/run /run/s6-rc*/servicedirs/svc-coredns/run; do
-        if [ -f "$f" ] && grep -q "$DEFAULT_DIR" "$f"; then
-            sed -i "s|$DEFAULT_DIR|$CUSTOM_DIR|g" "$f"
-            echo "[INFO] Updated $f"
-        fi
-    done
-    s6-svc -r /run/service/svc-coredns 2>/dev/null || true
+if [ -f "$CUSTOM_FILE" ]; then
+    if [ -f "$TARGET_FILE" ] && [ ! -f "$BACKUP_FILE" ]; then
+        echo "[INFO] Backing up default Corefile to $BACKUP_FILE"
+        cp -p "$TARGET_FILE" "$BACKUP_FILE"
+    fi
+
+    echo "[INFO] Applying custom Corefile to $TARGET_FILE"
+    cp -f "$CUSTOM_FILE" "$TARGET_FILE"
 else
-    echo "[INFO] No custom CoreDNS config found, using default folder $DEFAULT_DIR"
+    if [ -f "$BACKUP_FILE" ]; then
+        echo "[INFO] Custom Corefile removed"
+        echo "[INFO] Restoring default from $BACKUP_FILE"
+        mv -f "$BACKUP_FILE" "$TARGET_FILE"
+    else
+        echo "[INFO] No custom Corefile found"
+        echo "[INFO] Keeping default $TARGET_FILE"
+    fi
 fi
