@@ -8,6 +8,7 @@
 - Prowlarr
 - qBittorrent
 - Radarr
+- Seerr
 - Sonarr
 - Suwayomi
 - WireGuard

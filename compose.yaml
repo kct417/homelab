@@ -5,6 +5,7 @@ include:
 #  - ./prowlarr/compose.yaml
 #  - ./qbittorrent/compose.yaml
 #  - ./radarr/compose.yaml
+#  - ./seerr/compose.yaml
 #  - ./sonarr/compose.yaml
 #  - ./suwayomi/compose.yaml
   - ./wireguard/compose.yaml
