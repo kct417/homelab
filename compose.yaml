@@ -3,6 +3,7 @@ include:
 #  - ./komodo/compose.yaml
   - ./nginx/compose.yaml
 #  - ./prowlarr/compose.yaml
+#  - ./qbittorrent/compose.yaml
 #  - ./radarr/compose.yaml
 #  - ./sonarr/compose.yaml
 #  - ./suwayomi/compose.yaml
