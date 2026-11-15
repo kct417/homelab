@@ -36,9 +36,9 @@ services:
     volumes:
       - ./data:/home/suwayomi/.local/share/Tachidesk
 
-  flaresolverr:
+  byparr:
     image: ghcr.io/thephaseless/byparr
-    container_name: flaresolverr
+    container_name: byparr-suwayomi
     restart: unless-stopped
 
     environment:
