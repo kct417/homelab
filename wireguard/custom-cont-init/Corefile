@@ -15,3 +15,4 @@
         match "^(.*)\.internal\.$"
         rcode NOERROR
     }
+}
