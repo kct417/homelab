@@ -14,8 +14,8 @@ services:
 
     environment:
       TZ: Etc/UTC
-      PUID: 1000
-      PGID: 1000
+      # PUID: 1000
+      # PGID: 1000
 
       # Uncomment this if you want to change the location of
       # the SQLite DB file within the container
