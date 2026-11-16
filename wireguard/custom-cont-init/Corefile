@@ -2,13 +2,12 @@
     loop
     errors
     health
-    forward . /etc/resolv.conf
-	cache 30
+    forward . 1.1.1.1 8.8.8.8
+	cache
 
 	template IN A internal {
         match "^(.*)\.internal\.$"
-        answer "{{ .Name }} 60 IN A 10.0.255.1"
-		fallthrough
+        answer "{{ .Name }} 3600 IN A 10.0.255.1"
     }
 
 	template IN AAAA internal {
