@@ -34,7 +34,7 @@ services:
     # ports:
       # - 127.0.0.1:9120:9120
     # env_file: ./compose.env
-    env_file: ./komodo.env
+    env_file: ./env/komodo.env
     environment:
       KOMODO_DATABASE_ADDRESS: mongo:27017
     volumes:
@@ -60,7 +60,7 @@ services:
     depends_on:
       - core
     # env_file: ./compose.env
-    env_file: ./komodo.env
+    env_file: ./env/komodo.env
     volumes:
       ## Attach the Core / Periphery communication keys
       - ./config/komodo/keys:/config/keys

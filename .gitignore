@@ -4,4 +4,4 @@ config/
 data/
 media/
 
-!example.*.env
+!*.example.env

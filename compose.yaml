@@ -4,7 +4,7 @@ include:
   - ./dozzle.compose.yaml
   - ./jellyfin.compose.yaml
   - path: ./komodo.compose.yaml
-    env_file: ./komodo.env
+    env_file: ./env/komodo.env
   - ./nginx.compose.yaml
   - ./prowlarr.compose.yaml
   - ./qbittorrent.compose.yaml
@@ -12,5 +12,5 @@ include:
   - ./seerr.compose.yaml
   - ./sonarr.compose.yaml
   - path: ./suwayomi.compose.yaml
-    env_file: ./suwayomi.env
+    env_file: ./env/suwayomi.env
   - ./wireguard.compose.yaml
