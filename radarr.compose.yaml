@@ -7,10 +7,10 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./config:/config
-      - ./data:/data
+      - ./config/radarr:/config
+      - ./data/radarr:/data
       # - /path/to/movies:/movies #optional
       # - /path/to/download-client-downloads:/downloads #optional
-    ports:
-      - 127.0.0.1:7878:7878
+    # ports:
+      # - 127.0.0.1:7878:7878
     restart: unless-stopped

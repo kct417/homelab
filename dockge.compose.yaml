@@ -3,12 +3,12 @@ services:
     image: louislam/dockge:1
     container_name: dockge
     restart: unless-stopped
-    ports:
+    # ports:
       # Host Port:Container Port
-      - 127.0.0.1:5001:5001
+      # - 127.0.0.1:5001:5001
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./data:/app/data
+      - ./data/dockge:/app/data
 
       # If you want to use private registries, you need to share the auth file with Dockge:
       # - /root/.docker/:/root/.docker
@@ -19,11 +19,11 @@ services:
       # ✔️ CORRECT EXAMPLE: - /my-stacks:/my-stacks (Both paths match)
       # ❌ WRONG EXAMPLE: - /docker:/my-stacks (Both paths do not match)
       # - /opt/stacks:/opt/stacks
-      - ${PWD}/dockge/stacks:${PWD}/dockge/stacks
+      - ${PWD}/stacks:${PWD}/stacks
     environment:
       # Tell Dockge where your stacks directory is
       # - DOCKGE_STACKS_DIR=/opt/stacks
-      - DOCKGE_STACKS_DIR=${PWD}/dockge/stacks
+      - DOCKGE_STACKS_DIR=${PWD}/stacks
       # Both PUID and PGID must be set for it to do anything
       - PUID=1000 # Set the stack file/dir ownership to this user
       - PGID=1000 # Set the stack file/dir ownership to this group

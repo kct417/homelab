@@ -23,10 +23,10 @@ services:
       - LOG_CONFS=true #optional
 
     volumes:
-      - ./config:/config
+      - ./config/wireguard:/config
       - /lib/modules:/lib/modules #optional
-      - ./custom-cont-init:/custom-cont-init.d:ro
-      - ./custom-services:/custom-services.d:ro
+      - ./scripts/wireguard/custom-cont-init:/custom-cont-init.d:ro
+      - ./scripts/wireguard/custom-services:/custom-services.d:ro
 
     cap_add:
       - NET_ADMIN

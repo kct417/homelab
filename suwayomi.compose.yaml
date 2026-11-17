@@ -4,9 +4,10 @@ services:
     container_name: suwayomi
 #    user: 1000:1000
     restart: on-failure:3
+    env_file: ./suwayomi.env
 
-    ports:
-      - 127.0.0.1:4567:4567
+    # ports:
+      # - 127.0.0.1:4567:4567
 
     environment:
       - TZ=Etc/UTC # Use TZ database name from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -34,7 +35,7 @@ services:
       - EXTENSION_STORES=${EXTENSION_STORES:-[]}
 
     volumes:
-      - ./data:/home/suwayomi/.local/share/Tachidesk
+      - ./data/suwayomi:/home/suwayomi/.local/share/Tachidesk
 
   byparr:
     image: ghcr.io/thephaseless/byparr

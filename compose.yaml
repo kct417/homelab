@@ -1,14 +1,16 @@
 include:
-#  - ./dockge/compose.yaml
-#  - ./dockhand/compose.yaml
-#  - ./dozzle/compose.yaml
-#  - ./jellyfin/compose.yaml
-#  - ./komodo/compose.yaml
-  - ./nginx/compose.yaml
-#  - ./prowlarr/compose.yaml
-#  - ./qbittorrent/compose.yaml
-#  - ./radarr/compose.yaml
-#  - ./seerr/compose.yaml
-#  - ./sonarr/compose.yaml
-#  - ./suwayomi/compose.yaml
-  - ./wireguard/compose.yaml
+  - ./dockge.compose.yaml
+  - ./dockhand.compose.yaml
+  - ./dozzle.compose.yaml
+  - ./jellyfin.compose.yaml
+  - path: ./komodo.compose.yaml
+    env_file: ./komodo.env
+  - ./nginx.compose.yaml
+  - ./prowlarr.compose.yaml
+  - ./qbittorrent.compose.yaml
+  - ./radarr.compose.yaml
+  - ./seerr.compose.yaml
+  - ./sonarr.compose.yaml
+  - path: ./suwayomi.compose.yaml
+    env_file: ./suwayomi.env
+  - ./wireguard.compose.yaml

@@ -18,8 +18,8 @@ services:
     # ports:
     #   - 27017:27017
     volumes:
-      - ./data:/data/db
-      - ./config:/data/configdb
+      - ./data/komodo:/data/db
+      - ./config/komodo:/data/configdb
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DATABASE_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DATABASE_PASSWORD}
@@ -31,17 +31,17 @@ services:
     restart: unless-stopped
     depends_on:
       - mongo
-    ports:
-      - 127.0.0.1:9120:9120
+    # ports:
+      # - 127.0.0.1:9120:9120
     # env_file: ./compose.env
-    env_file: ./.env
+    env_file: ./komodo.env
     environment:
       KOMODO_DATABASE_ADDRESS: mongo:27017
     volumes:
       ## Attach the Core / Periphery communication keys
-      - ./keys:/config/keys
+      - ./config/komodo/keys:/config/keys
       ## Store dated backups of the database - https://komo.do/docs/setup/backup
-      - ${COMPOSE_KOMODO_BACKUPS_PATH}:/backups
+      - ${COMPOSE_KOMODO_BACKUPS_PATH:-${PWD}/data/komodo/backups}:/backups
       ## Store sync files on server
       # - /path/to/syncs:/syncs
       ## Optionally mount a custom core.config.toml
@@ -60,10 +60,10 @@ services:
     depends_on:
       - core
     # env_file: ./compose.env
-    env_file: ./.env
+    env_file: ./komodo.env
     volumes:
       ## Attach the Core / Periphery communication keys
-      - ./keys:/config/keys
+      - ./config/komodo/keys:/config/keys
       ## Mount external docker socket
       - /var/run/docker.sock:/var/run/docker.sock
       ## Allow Periphery to see processes outside of container
@@ -74,7 +74,7 @@ services:
       ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
       ## Default: /etc/komodo.
       # - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
-      - ${PWD}/komodo:${PWD}/komodo
+      - ${PERIPHERY_ROOT_DIRECTORY:-${PWD}/data/komodo}:${PERIPHERY_ROOT_DIRECTORY:-${PWD}/data/komodo}
       ## Optionally mount a custom periphery.config.toml
       # - /path/to/periphery.config.toml:/config/config.toml
       ## Optionally mount custom root CA certificate to trust

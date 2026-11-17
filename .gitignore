@@ -1,7 +1,7 @@
-.env
+*.env
 cache/
 config/
 data/
-keys/
-letsencrypt/
-stacks/
+media/
+
+!example.*.env

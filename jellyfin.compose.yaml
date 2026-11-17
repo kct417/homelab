@@ -4,24 +4,15 @@ services:
     container_name: jellyfin
     # Optional - specify the uid and gid you would like Jellyfin to use instead of root
     # user: 1000:1000
-    ports:
-      - 127.0.0.1:8096:8096/tcp
-      - 127.0.0.1:7359:7359/udp
+    # ports:
+      # - 127.0.0.1:8096:8096/tcp
+      # - 7359:7359/udp
     volumes:
-      - ./config:/config
-      - ./cache:/cache
-      - type: bind
-        source: ./data/media
-        target: /media
-      - type: bind
-        source: ./data/media2
-        target: /media2
-        read_only: true
+      - ./config/jellyfin:/config
+      - ./cache/jellyfin:/cache
+      - ./media:/media
       # Optional - extra fonts to be used during transcoding with subtitle burn-in
-      - type: bind
-        source: ./fonts
-        target: /usr/local/share/fonts/custom
-        read_only: true
+      # - /path/to/fonts:/usr/local/share/fonts/custom:ro
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     environment:

@@ -7,10 +7,10 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./config:/config
-      - ./data:/data
+      - ./config/sonarr:/config
+      - ./data/sonarr:/data
       # - /path/to/tvseries:/tv #optional
       # - /path/to/downloadclient-downloads:/downloads #optional
-    ports:
-      - 127.0.0.1:8989:8989
+    # ports:
+      # - 127.0.0.1:8989:8989
     restart: unless-stopped
