@@ -3,5 +3,6 @@ cache/
 config/
 data/
 media/
+stacks/
 
 !*.example.env
