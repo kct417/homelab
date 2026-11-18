@@ -30,13 +30,13 @@ services:
     init: true
     restart: unless-stopped
     depends_on:
-      - mongo
+      - komodo-mongo
     # ports:
       # - 127.0.0.1:9120:9120
     # env_file: ./compose.env
     env_file: ./env/komodo.env
     environment:
-      KOMODO_DATABASE_ADDRESS: mongo:27017
+      KOMODO_DATABASE_ADDRESS: komodo-mongo:27017
     volumes:
       ## Attach the Core / Periphery communication keys
       - ./config/komodo/keys:/config/keys
@@ -58,7 +58,7 @@ services:
     init: true
     restart: unless-stopped
     depends_on:
-      - core
+      - komodo
     # env_file: ./compose.env
     env_file: ./env/komodo.env
     volumes:
