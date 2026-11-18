@@ -8,9 +8,9 @@
 ##   3. Komodo Periphery
 
 services:
-  mongo-komodo:
+  komodo-mongo:
     image: mongo
-    container_name: mongo-komodo
+    container_name: komodo-mongo
     labels:
       komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
@@ -52,9 +52,9 @@ services:
   ## Deploy Periphery container using this block,
   ## or deploy the Periphery binary with systemd using
   ## https://github.com/moghtech/komodo/tree/main/scripts
-  periphery-komodo:
+  komodo-periphery:
     image: ghcr.io/moghtech/komodo-periphery # :${COMPOSE_KOMODO_IMAGE_TAG:-2}
-    container_name: periphery-komodo
+    container_name: komodo-periphery
     init: true
     restart: unless-stopped
     depends_on:

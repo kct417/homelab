@@ -37,9 +37,9 @@ services:
     volumes:
       - ./data/suwayomi:/home/suwayomi/.local/share/Tachidesk
 
-  byparr-suwayomi:
+  suwayomi-byparr:
     image: ghcr.io/thephaseless/byparr
-    container_name: byparr-suwayomi
+    container_name: suwayomi-byparr
     restart: unless-stopped
 
     environment:
