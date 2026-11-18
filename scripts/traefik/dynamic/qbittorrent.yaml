@@ -1,0 +1,13 @@
+http:
+  routers:
+    qbittorrent:
+      rule: "Host(`qbittorrent.internal`)"
+      entryPoints:
+        - web
+      service: qbittorrent
+
+  services:
+    qbittorrent:
+      loadBalancer:
+        servers:
+          - url: "http://qbittorrent:8080"

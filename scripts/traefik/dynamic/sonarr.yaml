@@ -1,0 +1,13 @@
+http:
+  routers:
+    sonarr:
+      rule: "Host(`sonarr.internal`)"
+      entryPoints:
+        - web
+      service: sonarr
+
+  services:
+    sonarr:
+      loadBalancer:
+        servers:
+          - url: "http://sonarr:8989"

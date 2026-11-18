@@ -1,0 +1,13 @@
+http:
+  routers:
+    dozzle:
+      rule: "Host(`dozzle.internal`)"
+      entryPoints:
+        - web
+      service: dozzle
+
+  services:
+    dozzle:
+      loadBalancer:
+        servers:
+          - url: "http://dozzle:8080"

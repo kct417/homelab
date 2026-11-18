@@ -1,0 +1,13 @@
+http:
+  routers:
+    seerr:
+      rule: "Host(`seerr.internal`)"
+      entryPoints:
+        - web
+      service: seerr
+
+  services:
+    seerr:
+      loadBalancer:
+        servers:
+          - url: "http://seerr:5055"

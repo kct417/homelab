@@ -1,16 +1,26 @@
 include:
-  - ./dockge.compose.yaml
-  - ./dockhand.compose.yaml
-  - ./dozzle.compose.yaml
+  # Services
   - ./jellyfin.compose.yaml
-  - path: ./komodo.compose.yaml
-    env_file: ./env/komodo.env
-  - ./nginx.compose.yaml
-  - ./prowlarr.compose.yaml
   - ./qbittorrent.compose.yaml
+  - path: ./suwayomi.compose.yaml
+    env_file: ./env/suwayomi.env
+
+  # Support Services
+  - ./prowlarr.compose.yaml
   - ./radarr.compose.yaml
   - ./seerr.compose.yaml
   - ./sonarr.compose.yaml
-  - path: ./suwayomi.compose.yaml
-    env_file: ./env/suwayomi.env
+
+  # Container Management
+  - ./dockge.compose.yaml
+  - ./dockhand.compose.yaml
+  - ./dozzle.compose.yaml
+  - path: ./komodo.compose.yaml
+    env_file: ./env/komodo.env
+
+  # Reverse Proxy Manager
+  - ./nginx.compose.yaml
+  - ./traefik.compose.yaml
+
+  # Virtual Private Network
   - ./wireguard.compose.yaml

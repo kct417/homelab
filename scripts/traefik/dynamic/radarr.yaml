@@ -1,0 +1,13 @@
+http:
+  routers:
+    radarr:
+      rule: "Host(`radarr.internal`)"
+      entryPoints:
+        - web
+      service: radarr
+
+  services:
+    radarr:
+      loadBalancer:
+        servers:
+          - url: "http://radarr:7878"

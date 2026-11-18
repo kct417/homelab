@@ -1,0 +1,13 @@
+http:
+  routers:
+    prowlarr:
+      rule: "Host(`prowlarr.internal`)"
+      entryPoints:
+        - web
+      service: prowlarr
+
+  services:
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://prowlarr:9696"

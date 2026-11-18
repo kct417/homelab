@@ -1,0 +1,71 @@
+#!/usr/bin/with-contenv bash
+
+PROXY_HOSTS=("nginx" "traefik")
+CHAIN="PROXY_FORWARD"
+PORTS=(80 443)
+
+SLEEP_PID=""
+cleanup() {
+    [ -n "$SLEEP_PID" ] && kill "$SLEEP_PID" 2>/dev/null
+    exit 0
+}
+trap cleanup SIGTERM SIGINT
+
+until ip link show wg0 >/dev/null 2>&1; do
+    sleep 2
+done
+
+iptables -t nat -N "$CHAIN" 2>/dev/null || true
+
+iptables -t nat -C PREROUTING \
+    -i wg0 -p tcp \
+    -m multiport --dports "$(IFS=,; echo "${PORTS[*]}")" \
+    -j "$CHAIN" 2>/dev/null || \
+iptables -t nat -A PREROUTING \
+    -i wg0 -p tcp \
+    -m multiport --dports "$(IFS=,; echo "${PORTS[*]}")" \
+    -j "$CHAIN"
+
+LAST_IP=""
+LAST_HOST=""
+
+while true; do
+    ACTIVE_IP=""
+    ACTIVE_HOST=""
+
+    for HOST in "${PROXY_HOSTS[@]}"; do
+        IP=$(getent ahostsv4 "$HOST" 2>/dev/null | awk 'NR==1 {print $1}')
+        if [ -n "$IP" ]; then
+            ACTIVE_IP="$IP"
+            ACTIVE_HOST="$HOST"
+            break
+        fi
+    done
+
+    if [ -n "$ACTIVE_IP" ]; then
+        if [ "$ACTIVE_IP" != "$LAST_IP" ] || [ "$ACTIVE_HOST" != "$LAST_HOST" ]; then
+            echo "[INFO] Active proxy detected: $ACTIVE_HOST ($ACTIVE_IP)"
+            iptables -t nat -F "$CHAIN"
+            for PORT in "${PORTS[@]}"; do
+                iptables -t nat -A "$CHAIN" \
+                    -p tcp --dport "$PORT" \
+                    -j DNAT --to-destination "$ACTIVE_IP:$PORT"
+            done
+            LAST_IP="$ACTIVE_IP"
+            LAST_HOST="$ACTIVE_HOST"
+            echo "[INFO] Forwarding rules updated for $ACTIVE_HOST"
+        fi
+    else
+        if [ -n "$LAST_IP" ]; then
+            echo "[INFO] No active proxy found; forwarding rules cleared"
+            iptables -t nat -F "$CHAIN"
+            LAST_IP=""
+            LAST_HOST=""
+        fi
+    fi
+
+	sleep 30 &
+	SLEEP_PID=$!
+	wait "$SLEEP_PID"
+	SLEEP_PID=""
+done

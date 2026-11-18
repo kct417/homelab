@@ -1,0 +1,13 @@
+http:
+  routers:
+    nginx:
+      rule: "Host(`nginx.internal`)"
+      entryPoints:
+        - web
+      service: nginx
+
+  services:
+    nginx:
+      loadBalancer:
+        servers:
+          - url: "http://nginx:81"

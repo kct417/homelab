@@ -1,0 +1,15 @@
+http:
+  routers:
+    traefik:
+      rule: "Host(`traefik.internal`)"
+      entryPoints:
+        - web
+      service: api@internal
+      middlewares:
+        - traefik-auth
+
+  middlewares:
+    traefik-auth:
+      basicAuth:
+        users:
+          - '{{ env "TRAEFIK_USERNAME" }}:{{ env "TRAEFIK_PASSWORD_HASH" }}'

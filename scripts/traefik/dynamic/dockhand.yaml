@@ -1,0 +1,13 @@
+http:
+  routers:
+    dockhand:
+      rule: "Host(`dockhand.internal`)"
+      entryPoints:
+        - web
+      service: dockhand
+
+  services:
+    dockhand:
+      loadBalancer:
+        servers:
+          - url: "http://dockhand:3000"
