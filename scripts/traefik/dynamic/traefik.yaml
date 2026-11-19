@@ -8,8 +8,21 @@ http:
       middlewares:
         - traefik-auth
 
+    metrics:
+      rule: "Host(`metrics.traefik.internal`)"
+      service: prometheus@internal
+      entryPoints:
+        - web
+      middlewares:
+        - traefik-auth
+        - traefik-metrics
+
   middlewares:
     traefik-auth:
       basicAuth:
         users:
           - '{{ env "TRAEFIK_USERNAME" }}:{{ env "TRAEFIK_PASSWORD_HASH" }}'
+
+    traefik-metrics:
+      replacePath:
+        path: "/metrics"
