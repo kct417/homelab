@@ -8,7 +8,7 @@ http:
       middlewares:
         - traefik-auth
 
-    metrics:
+    traefik-metrics:
       rule: "Host(`metrics.traefik.internal`)"
       service: prometheus@internal
       entryPoints:
