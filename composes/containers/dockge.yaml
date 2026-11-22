@@ -8,7 +8,7 @@ services:
       # - 127.0.0.1:5001:5001
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}/data/dockge:/app/data
+      - ${PWD}/state/dockge:/app/data
 
       # If you want to use private registries, you need to share the auth file with Dockge:
       # - /root/.docker/:/root/.docker

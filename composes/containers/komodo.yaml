@@ -18,8 +18,8 @@ services:
     # ports:
     #   - 27017:27017
     volumes:
-      - ${PWD}/data/komodo:/data/db
-      - ${PWD}/config/komodo:/data/configdb
+      - ${PWD}/state/komodo:/data/db
+      - ${PWD}/state/komodo:/data/configdb
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DATABASE_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DATABASE_PASSWORD}
@@ -39,9 +39,9 @@ services:
       KOMODO_DATABASE_ADDRESS: komodo-mongo:27017
     volumes:
       ## Attach the Core / Periphery communication keys
-      - ${PWD}/config/komodo/keys:/config/keys
+      - ${PWD}/state/komodo/keys:/config/keys
       ## Store dated backups of the database - https://komo.do/docs/setup/backup
-      - ${COMPOSE_KOMODO_BACKUPS_PATH:-${PWD}/data/komodo/backups}:/backups
+      - ${COMPOSE_KOMODO_BACKUPS_PATH:-${PWD}/state/komodo/backups}:/backups
       ## Store sync files on server
       # - /path/to/syncs:/syncs
       ## Optionally mount a custom core.config.toml
@@ -63,7 +63,7 @@ services:
     env_file: ${PWD}/env/komodo.env
     volumes:
       ## Attach the Core / Periphery communication keys
-      - ${PWD}/config/komodo/keys:/config/keys
+      - ${PWD}/state/komodo/keys:/config/keys
       ## Mount external docker socket
       - /var/run/docker.sock:/var/run/docker.sock
       ## Allow Periphery to see processes outside of container
@@ -74,7 +74,7 @@ services:
       ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
       ## Default: /etc/komodo.
       # - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
-      - ${PERIPHERY_ROOT_DIRECTORY:-${PWD}/data/komodo}:${PERIPHERY_ROOT_DIRECTORY:-${PWD}/data/komodo}
+      - ${PERIPHERY_ROOT_DIRECTORY:-${PWD}/state/komodo}:${PERIPHERY_ROOT_DIRECTORY:-${PWD}/state/komodo}
       ## Optionally mount a custom periphery.config.toml
       # - /path/to/periphery.config.toml:/config/config.toml
       ## Optionally mount custom root CA certificate to trust

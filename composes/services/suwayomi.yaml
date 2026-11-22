@@ -35,7 +35,7 @@ services:
       - EXTENSION_STORES=${EXTENSION_STORES:-[]}
 
     volumes:
-      - ${PWD}/data/suwayomi:/home/suwayomi/.local/share/Tachidesk
+      - ${PWD}/state/suwayomi:/home/suwayomi/.local/share/Tachidesk
 
   suwayomi-byparr:
     image: ghcr.io/thephaseless/byparr

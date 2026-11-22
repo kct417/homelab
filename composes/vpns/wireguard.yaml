@@ -23,7 +23,7 @@ services:
       - LOG_CONFS=true #optional
 
     volumes:
-      - ${PWD}/config/wireguard:/config
+      - ${PWD}/state/wireguard:/config
       - /lib/modules:/lib/modules #optional
       - ${PWD}/scripts/wireguard/custom-cont-init:/custom-cont-init.d:ro
       - ${PWD}/scripts/wireguard/custom-services:/custom-services.d:ro

@@ -7,7 +7,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ${PWD}/config/lidarr:/config
+      - ${PWD}/state/lidarr:/config
       - ${PWD}/media:/media #optional
       # - /path/to/downloads:/downloads #optional
     # ports:

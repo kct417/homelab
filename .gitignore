@@ -1,7 +1,6 @@
 *.env
-config/
-data/
 media/
 stacks/
+state/
 
 !*.example.env
