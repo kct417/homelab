@@ -6,10 +6,12 @@ include:
     env_file: ./env/suwayomi.env
 
   # Support Services
+  - ./compose/supports/lidarr.yaml
   - ./compose/supports/prowlarr.yaml
   - ./compose/supports/radarr.yaml
   - ./compose/supports/seerr.yaml
   - ./compose/supports/sonarr.yaml
+  - ./compose/supports/whisparr.yaml
 
   # Container Management
   - ./compose/containers/dockge.yaml

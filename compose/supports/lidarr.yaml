@@ -1,0 +1,15 @@
+services:
+  lidarr:
+    image: linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ${PWD}/config/lidarr:/config
+      - ${PWD}/media:/media #optional
+      # - /path/to/downloads:/downloads #optional
+    # ports:
+      # - 127.0.0.1:8686:8686
+    restart: unless-stopped

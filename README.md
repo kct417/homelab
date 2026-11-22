@@ -10,10 +10,12 @@
 
 ### Support Services
 
+- [Lidarr :8686](https://lidarr.audio)
 - [Prowlarr :9696](https://prowlarr.com)
 - [Radarr :7878](https://radarr.video)
 - [Seerr :5055](https://seerr.dev)
 - [Sonarr :8989](https://sonarr.tv)
+- [Whisparr :6969](https://whisparr.com)
 
 ### Container Management
 
