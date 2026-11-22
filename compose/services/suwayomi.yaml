@@ -4,7 +4,7 @@ services:
     container_name: suwayomi
 #    user: 1000:1000
     restart: on-failure:3
-    env_file: ./env/suwayomi.env
+    env_file: ${PWD}/env/suwayomi.env
 
     # ports:
       # - 127.0.0.1:4567:4567
@@ -35,7 +35,7 @@ services:
       - EXTENSION_STORES=${EXTENSION_STORES:-[]}
 
     volumes:
-      - ./data/suwayomi:/home/suwayomi/.local/share/Tachidesk
+      - ${PWD}/data/suwayomi:/home/suwayomi/.local/share/Tachidesk
 
   suwayomi-byparr:
     image: ghcr.io/thephaseless/byparr

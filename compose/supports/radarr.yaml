@@ -7,8 +7,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./config/radarr:/config
-      - ./media:/media
+      - ${PWD}/config/radarr:/config
+      - ${PWD}/media:/media
       # - /path/to/movies:/movies #optional
       # - /path/to/download-client-downloads:/downloads #optional
     # ports:

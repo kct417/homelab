@@ -3,7 +3,7 @@ services:
   traefik:
     image: traefik
     container_name: traefik
-    env_file: ./env/traefik.env
+    env_file: ${PWD}/env/traefik.env
     # command:
       # - "--api.insecure=true"
       # - "--providers.docker=true"
@@ -13,5 +13,5 @@ services:
       # - "127.0.0.1:8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./scripts/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - ./scripts/traefik/dynamic:/etc/traefik/dynamic:ro
+      - ${PWD}/scripts/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ${PWD}/scripts/traefik/dynamic:/etc/traefik/dynamic:ro

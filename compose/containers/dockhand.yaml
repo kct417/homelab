@@ -7,4 +7,4 @@ services:
       # - 127.0.0.1:3000:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./data/dockhand:/app/data
+      - ${PWD}/data/dockhand:/app/data

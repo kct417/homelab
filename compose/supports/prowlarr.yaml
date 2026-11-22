@@ -7,7 +7,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./config/prowlarr:/config
+      - ${PWD}/config/prowlarr:/config
     # ports:
       # - 127.0.0.1:9696:9696
     restart: unless-stopped
