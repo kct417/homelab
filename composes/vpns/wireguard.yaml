@@ -25,8 +25,8 @@ services:
     volumes:
       - ${PWD}/state/wireguard:/config
       - /lib/modules:/lib/modules #optional
-      - ${PWD}/scripts/wireguard/custom-cont-init:/custom-cont-init.d:ro
-      - ${PWD}/scripts/wireguard/custom-services:/custom-services.d:ro
+      - ${PWD}/bin/wireguard/custom-cont-init:/custom-cont-init.d:ro
+      - ${PWD}/bin/wireguard/custom-services:/custom-services.d:ro
 
     cap_add:
       - NET_ADMIN

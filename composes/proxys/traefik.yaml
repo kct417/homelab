@@ -13,5 +13,5 @@ services:
       # - "127.0.0.1:8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}/scripts/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - ${PWD}/scripts/traefik/dynamic:/etc/traefik/dynamic:ro
+      - ${PWD}/bin/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ${PWD}/bin/traefik/dynamic:/etc/traefik/dynamic:ro
