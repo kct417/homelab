@@ -7,7 +7,7 @@ include:
   # Support Services
   - ./composes/supports/lidarr.yaml
   - ./composes/supports/prowlarr.yaml
-  - ./composes/services/qbittorrent.yaml
+  - ./composes/supports/qbittorrent.yaml
   - ./composes/supports/radarr.yaml
   - ./composes/supports/seerr.yaml
   - ./composes/supports/sonarr.yaml
