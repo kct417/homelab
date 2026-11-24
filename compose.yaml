@@ -5,6 +5,7 @@ include:
     env_file: ./env/suwayomi.env
 
   # Support Services
+  - ./composes/supports/byparr.yaml
   - ./composes/supports/lidarr.yaml
   - ./composes/supports/prowlarr.yaml
   - ./composes/supports/qbittorrent.yaml

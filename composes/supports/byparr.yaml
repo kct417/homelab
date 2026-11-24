@@ -1,0 +1,12 @@
+services:
+  byparr:
+    image: ghcr.io/thephaseless/byparr
+    container_name: byparr
+    restart: unless-stopped
+
+    environment:
+      - TZ=Etc/UTC # Use TZ database name from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+    shm_size: "1gb"
+    tmpfs:
+      - /tmp:exec,mode=1777,size=1G
