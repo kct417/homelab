@@ -9,6 +9,7 @@ include:
   - ./composes/supports/prowlarr.yaml
   - ./composes/supports/qbittorrent.yaml
   - ./composes/supports/radarr.yaml
+  - ./composes/supports/sabnzbd.yaml
   - ./composes/supports/seerr.yaml
   - ./composes/supports/sonarr.yaml
   - ./composes/supports/whisparr.yaml

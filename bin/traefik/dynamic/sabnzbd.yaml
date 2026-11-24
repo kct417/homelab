@@ -1,0 +1,13 @@
+http:
+  routers:
+    sabnzbd:
+      rule: "Host(`sabnzbd.internal`)"
+      entryPoints:
+        - web
+      service: sabnzbd
+
+  services:
+    sabnzbd:
+      loadBalancer:
+        servers:
+          - url: "http://sabnzbd:8080"
