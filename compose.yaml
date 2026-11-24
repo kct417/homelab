@@ -1,13 +1,13 @@
 include:
   # Services
   - ./composes/services/jellyfin.yaml
-  - ./composes/services/qbittorrent.yaml
   - path: ./composes/services/suwayomi.yaml
     env_file: ./env/suwayomi.env
 
   # Support Services
   - ./composes/supports/lidarr.yaml
   - ./composes/supports/prowlarr.yaml
+  - ./composes/services/qbittorrent.yaml
   - ./composes/supports/radarr.yaml
   - ./composes/supports/seerr.yaml
   - ./composes/supports/sonarr.yaml
