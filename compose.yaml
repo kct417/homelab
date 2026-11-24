@@ -20,6 +20,7 @@ include:
   - ./composes/containers/dozzle.yaml
   - path: ./composes/containers/komodo.yaml
     env_file: ./env/komodo.env
+  - ./composes/containers/portainer.yaml
 
   # Reverse Proxy Manager
   - ./composes/proxys/nginx.yaml
