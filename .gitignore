@@ -1,6 +1,5 @@
 *.env
 media/
-stacks/
 state/
 
 !*.example.env
