@@ -1,31 +1,31 @@
 include:
   # Services
-  - ./composes/services/jellyfin.yaml
-  - path: ./composes/services/suwayomi.yaml
+  - ./docker/services/jellyfin.yaml
+  - path: ./docker/services/suwayomi.yaml
     env_file: ./env/suwayomi.env
 
   # Support Services
-  - ./composes/supports/byparr.yaml
-  - ./composes/supports/lidarr.yaml
-  - ./composes/supports/prowlarr.yaml
-  - ./composes/supports/qbittorrent.yaml
-  - ./composes/supports/radarr.yaml
-  - ./composes/supports/sabnzbd.yaml
-  - ./composes/supports/seerr.yaml
-  - ./composes/supports/sonarr.yaml
-  - ./composes/supports/whisparr.yaml
+  - ./docker/supports/byparr.yaml
+  - ./docker/supports/lidarr.yaml
+  - ./docker/supports/prowlarr.yaml
+  - ./docker/supports/qbittorrent.yaml
+  - ./docker/supports/radarr.yaml
+  - ./docker/supports/sabnzbd.yaml
+  - ./docker/supports/seerr.yaml
+  - ./docker/supports/sonarr.yaml
+  - ./docker/supports/whisparr.yaml
 
   # Container Management
-  - ./composes/containers/dockge.yaml
-  - ./composes/containers/dockhand.yaml
-  - ./composes/containers/dozzle.yaml
-  - path: ./composes/containers/komodo.yaml
+  - ./docker/containers/dockge.yaml
+  - ./docker/containers/dockhand.yaml
+  - ./docker/containers/dozzle.yaml
+  - path: ./docker/containers/komodo.yaml
     env_file: ./env/komodo.env
-  - ./composes/containers/portainer.yaml
+  - ./docker/containers/portainer.yaml
 
   # Reverse Proxy Manager
-  - ./composes/proxys/nginx.yaml
-  - ./composes/proxys/traefik.yaml
+  - ./docker/proxys/nginx.yaml
+  - ./docker/proxys/traefik.yaml
 
   # Virtual Private Network
-  - ./composes/vpns/wireguard.yaml
+  - ./docker/vpns/wireguard.yaml
