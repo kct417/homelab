@@ -2,6 +2,7 @@
 
 ## Services
 
+- [BentoPDF :8080](https://bentopdf.com)
 - [Jellyfin :8096](https://jellyfin.org)
 - [Suwayomi :4567](https://github.com/Suwayomi/Suwayomi-Server-docker)
 

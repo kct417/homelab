@@ -1,5 +1,6 @@
 include:
   # Services
+  - ./docker/services/bentopdf.yaml
   - ./docker/services/jellyfin.yaml
   - path: ./docker/services/suwayomi.yaml
     env_file: ./env/suwayomi.env

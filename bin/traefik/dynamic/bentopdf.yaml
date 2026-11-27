@@ -1,0 +1,13 @@
+http:
+  routers:
+    bentopdf:
+      rule: "Host(`bentopdf.internal`)"
+      entryPoints:
+        - web
+      service: bentopdf
+
+  services:
+    bentopdf:
+      loadBalancer:
+        servers:
+          - url: "http://bentopdf:8080"
